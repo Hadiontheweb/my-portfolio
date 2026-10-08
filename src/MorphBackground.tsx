@@ -6,8 +6,8 @@ const SNAP = 0.0004;
 
 // Actual files on disk: 001–176 contiguous, then 178, 179, 180, 182 (no 177/181)
 const FRAME_FILES: string[] = [];
-for (let i = 1; i <= 176; i++) FRAME_FILES.push(`frame_${String(i).padStart(3, '0')}.jpg`);
-FRAME_FILES.push('frame_178.jpg', 'frame_179.jpg', 'frame_180.jpg', 'frame_182.jpg');
+for (let i = 1; i <= 176; i++) FRAME_FILES.push(`frame_${String(i).padStart(3, '0')}.webp`);
+FRAME_FILES.push('frame_178.webp', 'frame_179.webp', 'frame_180.webp', 'frame_182.webp');
 const FRAME_COUNT = FRAME_FILES.length;
 
 /**
@@ -48,13 +48,30 @@ export default function MorphBackground() {
     };
 
     // ---- frame sequence ----
-    const frames = FRAME_FILES.map(name => {
-      const img = new Image();
-      img.onload = () => { needsRender = true; };
-      img.src = `${FRAME_DIR}/${name}`;
-      return img;
-    });
+    const frames = FRAME_FILES.map(() => new Image());
+    const requestedFrames = new Set<number>();
+    let requestedTargetCenter = -1;
+    let requestedDisplayCenter = -1;
     const isReady = (img: HTMLImageElement) => img.complete && img.naturalWidth > 0;
+    const requestFrame = (index: number) => {
+      if (index < 0 || index >= FRAME_COUNT || requestedFrames.has(index)) return;
+      requestedFrames.add(index);
+      const img = frames[index];
+      img.decoding = 'async';
+      img.fetchPriority =
+        index === requestedTargetCenter || (index === 0 && requestedTargetCenter === -1) ? 'high' : 'low';
+      img.onload = () => {
+        if (!started) {
+          started = true;
+          resize();
+        }
+        needsRender = true;
+      };
+      img.onerror = () => {
+        console.error(`Failed to load morph frame: ${FRAME_FILES[index]}`);
+      };
+      img.src = `${FRAME_DIR}/${FRAME_FILES[index]}`;
+    };
 
     // Nearest frame that has finished loading (walk back, then forward)
     const nearestReady = (i: number): HTMLImageElement | null => {
@@ -63,12 +80,7 @@ export default function MorphBackground() {
       return null;
     };
 
-    const onFirstFrame = () => {
-      started = true;
-      resize();
-    };
-    frames[0].addEventListener('load', onFirstFrame);
-    if (isReady(frames[0])) { started = true; resize(); }
+    requestFrame(0);
 
     // Complete the morph when the services section reaches the bottom of view.
     const readScroll = () => {
@@ -86,6 +98,11 @@ export default function MorphBackground() {
       );
       const max = servicesEnd;
       target = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+      const center = Math.round(target * (FRAME_COUNT - 1));
+      if (center !== requestedTargetCenter) {
+        requestedTargetCenter = center;
+        [center, center + 1, center - 1, center + 2, center - 2].forEach(requestFrame);
+      }
     };
 
     // Full-bleed cover fit, centered
@@ -137,6 +154,12 @@ export default function MorphBackground() {
         needsRender = true;
       }
 
+      const displayCenter = Math.round(display * (FRAME_COUNT - 1));
+      if (displayCenter !== requestedDisplayCenter) {
+        requestedDisplayCenter = displayCenter;
+        [displayCenter, displayCenter + 1, displayCenter - 1].forEach(requestFrame);
+      }
+
       if (needsRender && started) {
         render();
         needsRender = false;
@@ -150,8 +173,10 @@ export default function MorphBackground() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
-      frames[0].removeEventListener('load', onFirstFrame);
-      frames.forEach(img => { img.onload = null; });
+      frames.forEach(img => {
+        img.onload = null;
+        img.onerror = null;
+      });
     };
   }, []);
 
