@@ -4,11 +4,15 @@
 @layer base {
   :root {
     --font-dm-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --brand-primary: #8e1ea2;
+    --brand-secondary: #c654c3;
+    --brand-highlight: #ed96d7;
+    --brand-soft: #ffc0de;
   }
   
   html {
     /* clip (not hidden): overflow-x hidden on body would turn body into a scroll
-     container and break position: sticky inside the hero scroll animation */
+     container and break sticky sections */
     overflow-x: clip;
   }
 
@@ -25,12 +29,15 @@
     0 0 25px rgba(255, 255, 255, 0.12);
 }
 
-.hero-content .hero-greeting,
+.hero-content .hero-greeting {
+  color: var(--brand-highlight);
+}
+
 .hero-title-accent {
-  color: #FF5A00;
+  color: var(--brand-soft);
   text-shadow:
     0 3px 10px rgba(20, 15, 20, 0.45),
-    0 0 18px rgba(255, 90, 0, 0.12);
+    0 0 18px rgba(198, 84, 195, 0.2);
 }
 /* ============================================================
    Liquid Glass — Apple-style refractive glass surface

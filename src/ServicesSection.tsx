@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 function GlassPill({ children }: { children: ReactNode }) {
   return (
     <span data-scroll-reveal className="liquid-glass inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:text-sm">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#ff5500]" />
+      <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand-primary)]" />
       {children}
     </span>
   );
@@ -37,7 +37,7 @@ export default function ServicesSection() {
                 <span data-scroll-reveal className={`${pillBase} relative z-10 border-white/30 text-white/80`}>Front-End</span>
                 <div className="relative z-10 space-y-2.5 pt-8">
                   <h3 data-scroll-reveal className="text-xl font-bold leading-snug tracking-tight sm:text-2xl">
-                    Fast, fluid <span className="text-[#ff5500]">front-ends</span>
+                    Fast, fluid <span className="text-[var(--brand-highlight)]">front-ends</span>
                   </h3>
                   <p data-scroll-reveal className="text-xs leading-relaxed text-white/75 sm:text-sm">
                     Everything the user sees and interacts with — responsive, mobile-optimized builds in HTML5, CSS3, JavaScript, React, Next.js &amp; Vue.js.
@@ -131,7 +131,7 @@ export default function ServicesSection() {
                     Continuous support — malware removal, third-party API updates &amp; cloud hosting management on AWS &amp; Vercel.
                   </p>
                   <div className="flex items-center gap-2 pt-2">
-                    <span className="text-lg leading-none text-[#ff5500]">✳</span>
+                    <span className="text-lg leading-none text-[var(--brand-highlight)]">✳</span>
                     <span className="text-sm font-bold tracking-tight text-white">Hadi Morph</span>
                   </div>
                 </div>

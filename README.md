@@ -23,4 +23,4 @@ npm run build
 npm run preview
 ```
 
-Keep `public/frames` and `public/images` in the repository; they contain assets used by the live site. The root-level `frames` directory is a duplicate and is intentionally excluded from Git.
+Keep `public/images` in the repository; it contains assets used by the live site.
