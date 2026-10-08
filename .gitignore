@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vercel/
+.freebuff/
+/frames/
+
+.env
+.env.*
+!.env.example
