@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ServicesSection from './ServicesSection';
 import ProcessSection from './ProcessSection';
+import FAQSection from './FAQSection';
 import GradientWaves from './GradientWaves';
 import { GlassEffect, GlassFilter } from './components/ui/liquid-glass';
 
@@ -132,7 +133,7 @@ export default function App() {
   }, []);
 
   return (
-    <div ref={appRef} className="relative min-h-screen w-full bg-black text-white font-['DM_Sans',sans-serif] selection:bg-[var(--brand-primary)] selection:text-white flex flex-col justify-between">
+    <div ref={appRef} className="relative min-h-screen w-full bg-[#100817] text-white font-['DM_Sans',sans-serif] selection:bg-[var(--brand-primary)] selection:text-white flex flex-col justify-between">
       
       {/* ========================================================================= */}
       {/* HEADER / NAVIGATION                                                       */}
@@ -312,7 +313,7 @@ export default function App() {
         </div>
       </section>
 
-      <section id="about" className="relative z-10 isolate overflow-hidden rounded-t-[2.5rem] border-t border-white/10 sm:rounded-t-[3.5rem]">
+      <section id="about" className="section-sticky section-top-rounded relative z-10 isolate overflow-hidden border-t border-white/10 sm:rounded-t-[3.5rem]">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#0b0710_0%,#13091a_48%,#09070d_100%)]"
@@ -476,14 +477,14 @@ export default function App() {
       {/* SERVICES SECTION                                                          */}
       {/* ========================================================================= */}
       <ServicesSection />
-      <div className="relative z-10 bg-[linear-gradient(145deg,#f7f2f8_0%,#eee5f1_52%,#f7f3f8_100%)] px-3 py-5 sm:px-6 sm:py-8">
+      <div className="process-section-background relative z-30 bg-[#120913]">
         <ProcessSection />
       </div>
 
-      <div className="relative z-20 bg-[#100817]">
+      <div className="projects-section-background relative z-40 bg-[#100817]">
         <section
           id="projects"
-          className="relative isolate w-full overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0b0710] px-6 py-24 text-white sm:rounded-[3.5rem] sm:px-12 sm:py-32 md:px-16 lg:px-20"
+          className="relative isolate min-h-[100svh] w-full overflow-hidden border border-white/10 bg-[#0b0710] px-6 py-24 text-white sm:px-12 sm:py-32 md:px-16 lg:px-20"
         >
           <div
             aria-hidden="true"
@@ -559,10 +560,10 @@ export default function App() {
         </section>
       </div>
 
-      <div id="contact-pricing" className="relative z-10 -mt-10 sm:-mt-12">
+      <div id="contact-pricing" className="relative z-50 -mt-10 sm:-mt-12">
         <div aria-hidden="true" className="pointer-events-none sticky top-0 -mb-[100svh] h-svh overflow-hidden">
           <img
-            src="/images/cta-background.webp"
+            src="/images/cta-background.png"
             alt=""
             data-contact-background
             className="absolute inset-0 h-full w-full object-cover object-center"
@@ -602,7 +603,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="pricing" className="relative z-20 -mt-10 rounded-t-[2.5rem] bg-white px-6 py-20 text-zinc-950 sm:-mt-12 sm:rounded-t-[3rem] sm:px-12 sm:py-24 md:px-16 lg:px-20">
+        <section id="pricing" className="relative z-20 -mt-10 bg-white px-6 py-20 text-zinc-950 sm:-mt-12 sm:px-12 sm:py-24 md:px-16 lg:px-20">
           <div className="mx-auto max-w-[1200px]">
             <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
               <span data-scroll-reveal className="mb-4 block text-sm font-semibold text-[var(--brand-primary)]">
@@ -669,6 +670,48 @@ export default function App() {
           </div>
         </section>
       </div>
+
+      <FAQSection />
+
+      <footer className="relative z-50 border-t border-white/10 bg-[#100817] px-6 py-10 text-white sm:px-12 sm:py-12 md:px-16 lg:px-20">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <a
+              href="#home"
+              className="text-xl font-bold tracking-tight transition-opacity hover:opacity-80"
+            >
+              Hadi <span className="text-[var(--brand-soft)]">Morph</span>
+            </a>
+            <p className="mt-2 text-sm text-white/55">
+              Thoughtful design and dependable development.
+            </p>
+          </div>
+
+          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
+            {[
+              ['About', '#about'],
+              ['Services', '#services'],
+              ['Process', '#process'],
+              ['Projects', '#projects'],
+              ['Contact', '#contact'],
+            ].map(([label, href]) => (
+              <a key={label} href={href} className="transition-colors hover:text-white">
+                {label}
+              </a>
+            ))}
+          </nav>
+
+          <a
+            href="mailto:ahmezzhadi@gmail.com"
+            className="text-sm text-white/70 transition-colors hover:text-[var(--brand-soft)]"
+          >
+            ahmezzhadi@gmail.com
+          </a>
+        </div>
+        <div className="mx-auto mt-8 w-full max-w-[1600px] border-t border-white/10 pt-5 text-xs text-white/45">
+          © {new Date().getFullYear()} Hadi Morph. All rights reserved.
+        </div>
+      </footer>
 
     </div>
   );

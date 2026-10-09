@@ -110,15 +110,11 @@ function SectionLabel({ children }: { children: ReactNode }) {
 
 export default function ServicesSection() {
   return (
-    <div className="relative z-10" style={{ backgroundColor: '#100817' }}>
-    <section id="services" className="relative isolate overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0b0710] sm:rounded-[3.5rem]">
+    <div className="services-section-background relative z-20 min-h-[100svh] bg-[#100817]">
+    <section id="services" className="services-section-background relative isolate min-h-[100svh] overflow-hidden border border-white/10 bg-[#0b0710]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(ellipse at 14% 12%, rgba(142, 30, 162, 0.38), transparent 38%), radial-gradient(ellipse at 86% 45%, rgba(198, 84, 195, 0.22), transparent 40%), radial-gradient(ellipse at 34% 92%, rgba(142, 30, 162, 0.25), transparent 42%), linear-gradient(180deg, #100817 0%, #180b20 48%, #0b0710 100%)',
-        }}
       />
       <div
         aria-hidden="true"

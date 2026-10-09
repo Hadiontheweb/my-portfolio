@@ -37,17 +37,17 @@ export default function ProcessSection() {
     <section
       id="process"
       aria-label="Our process"
-      className="relative isolate scroll-mt-28 overflow-hidden rounded-[2.5rem] border border-white/70 bg-[#f2ebf5] px-4 py-8 text-[#161616] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:rounded-[3.5rem] sm:px-8 sm:py-12 md:px-10"
+      className="process-section-background relative z-30 isolate min-h-[100svh] overflow-hidden border border-white/10 bg-[#0b0710] px-4 py-8 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_24px_80px_rgba(122,33,134,0.16)] sm:px-8 sm:py-12 md:px-10"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_0%,rgba(255,255,255,0.9),transparent_42%),radial-gradient(ellipse_at_92%_34%,rgba(198,84,195,0.16),transparent_38%),linear-gradient(145deg,#f7f2f8_0%,#eee5f1_52%,#f7f3f8_100%)]"
+        className="pointer-events-none absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--brand-secondary)]/20 blur-[110px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-28 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--brand-secondary)]/15 blur-[100px]"
+        className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full bg-[var(--brand-primary)]/18 blur-[90px]"
       />
-      <div className="relative z-10 mb-6 flex justify-center sm:mb-8">
+      <div className="relative z-10 mb-10 flex justify-center sm:mb-14">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-[-1.25rem] left-1/2 w-64 -translate-x-1/2 rounded-full bg-[linear-gradient(100deg,rgba(142,30,162,0.28),rgba(255,255,255,0.72),rgba(198,84,195,0.3))] blur-2xl"
@@ -76,10 +76,10 @@ export default function ProcessSection() {
                 onClick={() => setActiveStep(index)}
                 onFocus={() => setActiveStep(index)}
                 onMouseEnter={() => setHoveredStep(index)}
-                className={`process-step group relative grid w-full items-center gap-x-3 overflow-hidden rounded-2xl border border-transparent py-4 pl-5 pr-3 text-left transition-[grid-template-columns,min-height,color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--brand-primary)] sm:gap-x-4 sm:py-5 sm:pl-8 sm:pr-5 ${
+                className={`process-step group relative grid w-full items-center gap-x-3 overflow-hidden rounded-2xl border py-4 pl-5 pr-3 text-left backdrop-blur-xl transition-[grid-template-columns,min-height,color,background-color,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--brand-primary)] sm:gap-x-4 sm:py-5 sm:pl-8 sm:pr-5 ${
                   isActive
-                    ? 'border-white/25 bg-gradient-to-r from-[var(--brand-primary)] to-[var(--brand-secondary)] text-white shadow-[0_14px_36px_rgba(80,19,92,0.24)]'
-                    : 'border-white/80 bg-white/65 text-[#161616] shadow-[0_8px_24px_rgba(61,24,68,0.06)] backdrop-blur-xl hover:bg-white/85 hover:shadow-[0_12px_30px_rgba(61,24,68,0.1)]'
+                    ? 'border-white/20 bg-gradient-to-r from-[var(--brand-primary)] to-[var(--brand-secondary)] text-white shadow-[0_20px_44px_rgba(80,19,92,0.3)]'
+                    : 'border-white/10 bg-[rgba(255,255,255,0.06)] text-white shadow-[0_12px_30px_rgba(6,3,10,0.18)] hover:border-white/15 hover:bg-[rgba(255,255,255,0.09)]'
                 }`}
               >
                 <span
@@ -94,7 +94,7 @@ export default function ProcessSection() {
                   className={`font-sans text-3xl font-bold tracking-[-0.05em] transition-colors duration-300 motion-reduce:transition-none sm:text-4xl lg:text-5xl ${
                     isActive ? 'row-span-1' : 'row-span-2 sm:row-span-1'
                   } ${
-                    isActive ? 'text-white' : 'text-[#161616]'
+                    isActive ? 'text-white' : 'text-white/80'
                   }`}
                 >
                   {String(index + 1).padStart(2, '0')}
@@ -102,7 +102,7 @@ export default function ProcessSection() {
 
                 <span
                   className={`min-w-0 text-lg font-semibold tracking-tight transition-[color,opacity] duration-300 motion-reduce:transition-none sm:text-xl lg:text-2xl ${
-                    isActive ? 'text-white' : 'text-[#161616]'
+                    isActive ? 'text-white' : 'text-white'
                   }`}
                 >
                   {step.title}
@@ -110,7 +110,7 @@ export default function ProcessSection() {
 
                 <span
                   className={`col-start-2 col-end-3 row-start-2 mt-1 min-w-0 break-words text-xs leading-relaxed transition-[opacity,color] duration-300 motion-reduce:transition-none sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:mt-0 sm:whitespace-nowrap sm:text-right sm:text-sm ${
-                    isActive ? 'hidden' : 'text-[#777477]'
+                    isActive ? 'hidden' : 'text-white/60'
                   }`}
                 >
                   {step.description}

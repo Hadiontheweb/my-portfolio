@@ -18,7 +18,7 @@
 
   body {
     font-family: var(--font-dm-sans);
-    background-color: #000000;
+    background-color: #100817;
     color: #ffffff;
   }
 }
@@ -121,6 +121,36 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+.section-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.services-section-background {
+  background-image:
+    radial-gradient(ellipse at 14% 12%, rgba(142, 30, 162, 0.38), transparent 38%),
+    radial-gradient(ellipse at 86% 45%, rgba(198, 84, 195, 0.22), transparent 40%),
+    radial-gradient(ellipse at 34% 92%, rgba(142, 30, 162, 0.25), transparent 42%),
+    linear-gradient(180deg, #100817 0%, #180b20 48%, #0b0710 100%);
+}
+
+.process-section-background {
+  background-image:
+    radial-gradient(ellipse at 12% 8%, rgba(255, 255, 255, 0.22), transparent 20%),
+    radial-gradient(ellipse at 80% 28%, rgba(198, 84, 195, 0.24), transparent 26%),
+    radial-gradient(ellipse at 50% 100%, rgba(142, 30, 162, 0.19), transparent 42%),
+    linear-gradient(135deg, #120913 0%, #190d22 42%, #0b0710 100%);
+}
+
+.projects-section-background {
+  background-image:
+    radial-gradient(ellipse at 12% 10%, rgba(142, 30, 162, 0.3), transparent 38%),
+    radial-gradient(ellipse at 92% 56%, rgba(198, 84, 195, 0.2), transparent 40%),
+    linear-gradient(180deg, #100817 0%, #14091a 52%, #0b0710 100%);
 }
 
 .process-step {
