@@ -310,7 +310,7 @@ export default function GradientWaves({
     let elapsed = 0;
     let previousTime = performance.now();
     let lastRenderTime = 0;
-    const frameInterval = 1000 / 30;
+    const frameInterval = 1000 / 24;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const canAnimate = () => isVisible && isPageVisible && !isPaused && !reducedMotion.matches;
 

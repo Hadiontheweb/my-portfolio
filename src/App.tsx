@@ -3,6 +3,7 @@ import { ArrowRight, Check, Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ServicesSection from './ServicesSection';
+import ProcessSection from './ProcessSection';
 import GradientWaves from './GradientWaves';
 import { GlassEffect, GlassFilter } from './components/ui/liquid-glass';
 
@@ -13,42 +14,42 @@ const projects = [
     title: 'Cold Front',
     description: 'An expressive outerwear campaign built around bold, seasonal imagery.',
     category: 'Fashion campaign',
-    image: 'https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=800&q=75',
     alt: 'Model wearing a dark winter jacket outdoors',
   },
   {
     title: 'Off Hours',
     description: 'A streetwear concept with a confident visual identity and editorial direction.',
     category: 'Brand identity',
-    image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=75',
     alt: 'Contemporary streetwear editorial photography',
   },
   {
     title: 'Afterglow',
     description: 'A fashion story pairing striking portraiture with a modern digital presence.',
     category: 'Digital editorial',
-    image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=75',
     alt: 'High-fashion editorial portrait',
   },
   {
     title: 'Sundown',
     description: 'Warm, atmospheric campaign art direction for a hospitality brand.',
     category: 'Hospitality',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=75',
     alt: 'Cocktail styled for a hospitality campaign',
   },
   {
     title: 'Soft Form',
     description: 'A clean apparel collection presentation with a calm, tactile feel.',
     category: 'Product styling',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=75',
     alt: 'Curated apparel collection flat lay',
   },
   {
     title: 'Good Energy',
     description: 'A refreshing packaging direction designed to stand out on the shelf.',
     category: 'Packaging concept',
-    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=75',
     alt: 'Colorful beverage prepared for product photography',
   },
 ];
@@ -152,7 +153,7 @@ export default function App() {
 
             <div className="hidden items-center gap-6 md:flex lg:gap-8">
               <nav aria-label="Main navigation" className="flex items-center gap-5 text-sm lg:gap-7">
-                {(['Home', 'About', 'Services', 'Projects'] as const).map((item) => {
+                {(['Home', 'About', 'Services', 'Process', 'Projects'] as const).map((item) => {
                   const href = item === 'Home' ? '#home' : `#${item.toLowerCase()}`;
                   return (
                     <a
@@ -208,7 +209,7 @@ export default function App() {
 
           {isMobileMenuOpen && (
             <nav aria-label="Mobile navigation" className="mt-4 grid gap-1 border-t border-white/15 pt-3 md:hidden">
-              {(['Home', 'About', 'Services', 'Projects'] as const).map((item) => {
+              {(['Home', 'About', 'Services', 'Process', 'Projects'] as const).map((item) => {
                 const href = item === 'Home' ? '#home' : `#${item.toLowerCase()}`;
                 return (
                   <a
@@ -252,14 +253,14 @@ export default function App() {
             zoom={1}
             height={5.5}
             fogDepth={15}
-            detail="medium"
+            detail="low"
             brightness={1.2}
             opacity={0.95}
             mouseInteraction
             parallaxStrength={0.35}
             grain={false}
             grainIntensity={0}
-            dpr={0.85}
+            dpr={0.65}
           />
         </div>
         <div className="relative z-10 flex h-full w-full items-center px-6 sm:px-12 md:px-16 lg:px-20 max-w-[1600px] mx-auto">
@@ -344,9 +345,11 @@ export default function App() {
               <div aria-hidden="true" className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-[var(--brand-primary)]/45 via-[var(--brand-secondary)]/15 to-[var(--brand-soft)]/30 blur-2xl" />
               <div className="liquid-glass group relative aspect-[4/5] overflow-hidden rounded-[2rem] p-2">
                 <img
-                  src="/images/hadi-profile.jpg"
+                  src="/images/hadi-profile.webp"
                   alt="Portrait of Hadi"
                   className="h-full w-full rounded-[1.55rem] object-cover object-[center_32%] transition-transform duration-700 group-hover:scale-[1.035]"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-[1.55rem] bg-gradient-to-t from-[#100713]/90 via-transparent to-[var(--brand-primary)]/10" />
                 <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">
@@ -473,57 +476,93 @@ export default function App() {
       {/* SERVICES SECTION                                                          */}
       {/* ========================================================================= */}
       <ServicesSection />
+      <div className="relative z-10 bg-[linear-gradient(145deg,#f7f2f8_0%,#eee5f1_52%,#f7f3f8_100%)] px-3 py-5 sm:px-6 sm:py-8">
+        <ProcessSection />
+      </div>
 
-      <section
-        id="projects"
-        className="relative z-20 w-full rounded-t-[2.5rem] rounded-b-[2.5rem] bg-white px-6 py-20 text-zinc-950 sm:rounded-t-[3rem] sm:rounded-b-[3rem] sm:px-12 sm:py-28 md:px-16 lg:px-20"
-      >
-        <div className="mx-auto w-full max-w-[1600px]">
-          <div className="mb-10 max-w-3xl sm:mb-14">
-            <span data-scroll-reveal className="mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand-primary)]">
-              Selected projects
-            </span>
-            <h2 data-scroll-reveal className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Thoughtful design.
-              <span className="block text-zinc-500">Made to move businesses forward.</span>
-            </h2>
-          </div>
+      <div className="relative z-20 bg-[#100817]">
+        <section
+          id="projects"
+          className="relative isolate w-full overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0b0710] px-6 py-24 text-white sm:rounded-[3.5rem] sm:px-12 sm:py-32 md:px-16 lg:px-20"
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                'radial-gradient(ellipse at 12% 10%, rgba(142, 30, 162, 0.3), transparent 38%), radial-gradient(ellipse at 92% 56%, rgba(198, 84, 195, 0.2), transparent 40%), linear-gradient(180deg, #100817 0%, #14091a 52%, #0b0710 100%)',
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-48 top-24 h-[34rem] w-[34rem] rounded-full bg-[var(--brand-primary)]/20 blur-[130px]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px)',
+              backgroundSize: '72px 72px',
+              maskImage: 'linear-gradient(to bottom, black, transparent 85%)',
+            }}
+          />
 
-          <div className="grid grid-cols-1 items-end gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8">
-            {projects.map((project, index) => (
-              <article key={project.title} data-scroll-reveal className="group flex h-full w-full flex-col">
-                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-100">
-                  <img
-                    src={project.image}
-                    alt={project.alt}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="mt-5 flex flex-1 items-start justify-between gap-4">
-                  <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-primary)]">
-                      {project.category}
-                    </p>
-                    <h3 className="text-xl font-bold tracking-tight sm:text-2xl">{project.title}</h3>
-                    <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 sm:text-base">
-                      {project.description}
-                    </p>
-                  </div>
-                  <span className="mt-1 shrink-0 text-sm font-medium text-zinc-400">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </div>
-              </article>
-            ))}
+          <div className="relative mx-auto w-full max-w-[1600px]">
+            <div className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 md:flex-row md:items-end">
+              <div className="max-w-3xl">
+                <span data-scroll-reveal className="relative isolate mb-5 inline-flex overflow-hidden rounded-full border border-white/30 bg-gradient-to-b from-white/20 via-[var(--brand-primary)]/60 to-[var(--brand-primary)]/85 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[0_4px_16px_rgba(142,30,162,0.3),inset_0_1px_0_rgba(255,255,255,0.55),inset_0_-2px_4px_rgba(0,0,0,0.28)] ring-1 ring-inset ring-white/20 backdrop-blur-xl">
+                  <span aria-hidden="true" className="pointer-events-none absolute inset-px rounded-full bg-gradient-to-b from-white/15 via-transparent to-transparent" />
+                  <span className="relative">Selected projects</span>
+                </span>
+                <h2 data-scroll-reveal className="text-4xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
+                  Thoughtful design.
+                  <span className="block text-[var(--brand-soft)]">Made to move businesses forward.</span>
+                </h2>
+              </div>
+              <p data-scroll-reveal className="max-w-sm text-sm leading-relaxed text-white/65 sm:text-base md:pb-1">
+                A selection of digital experiences and visual identities, made to connect brands with the people they serve.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-7">
+              {projects.map((project, index) => (
+                <article key={project.title} data-scroll-reveal className="group">
+                  <GlassEffect className="h-full overflow-hidden transition duration-300 group-hover:-translate-y-1">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#1a1020]">
+                      <img
+                        src={project.image}
+                        alt={project.alt}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#100713]/75 via-transparent to-black/10" />
+                      <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md sm:left-5 sm:top-5">
+                        {project.category}
+                      </span>
+                      <span className="absolute right-4 top-4 font-mono text-xs text-white/80 sm:right-5 sm:top-5">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="p-5 sm:p-6">
+                      <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">{project.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/65 sm:text-base">
+                        {project.description}
+                      </p>
+                    </div>
+                  </GlassEffect>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <div id="contact-pricing" className="relative z-10 -mt-10 sm:-mt-12">
         <div aria-hidden="true" className="pointer-events-none sticky top-0 -mb-[100svh] h-svh overflow-hidden">
           <img
-            src="/images/cta-background.png"
+            src="/images/cta-background.webp"
             alt=""
             data-contact-background
             className="absolute inset-0 h-full w-full object-cover object-center"

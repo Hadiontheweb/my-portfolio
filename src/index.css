@@ -122,3 +122,37 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
 }
+
+.process-step {
+  grid-template-columns: 2.75rem minmax(0, 1fr) 0fr;
+  min-height: 96px;
+}
+
+.process-step[aria-expanded='true'] {
+  grid-template-columns: 2.75rem minmax(0, 1fr) 5.5rem;
+  min-height: 142px;
+}
+
+.process-step-preview {
+  height: 0;
+}
+
+.process-step[aria-expanded='true'] .process-step-preview {
+  height: 4rem;
+}
+
+@media (min-width: 640px) {
+  .process-step {
+    grid-template-columns: 5rem minmax(10rem, 0.45fr) minmax(0, 1.55fr) 0fr;
+    min-height: 112px;
+  }
+
+  .process-step[aria-expanded='true'] {
+    grid-template-columns: 5rem minmax(10rem, 0.75fr) 0fr minmax(12rem, 0.45fr);
+    min-height: 156px;
+  }
+
+  .process-step[aria-expanded='true'] .process-step-preview {
+    height: 7rem;
+  }
+}
