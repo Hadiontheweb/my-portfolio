@@ -39,6 +39,92 @@
     0 3px 10px rgba(20, 15, 20, 0.45),
     0 0 18px rgba(198, 84, 195, 0.2);
 }
+
+.footer-wordmark span {
+  color: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.07) 58%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.section-pattern-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.38;
+  mask-image: linear-gradient(to bottom, transparent, black 14%, black 86%, transparent);
+}
+
+.section-pattern-about {
+  background-image:
+    radial-gradient(circle at center, transparent 0 34px, rgba(255, 255, 255, 0.14) 35px 36px, transparent 37px 67px, rgba(255, 255, 255, 0.09) 68px 69px, transparent 70px),
+    radial-gradient(circle, rgba(255, 192, 222, 0.5) 1px, transparent 1.5px);
+  background-size: 190px 190px, 38px 38px;
+}
+
+.section-pattern-services {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.11) 1px, transparent 1px);
+  background-size: 54px 54px;
+}
+
+.section-pattern-process {
+  background-image:
+    repeating-linear-gradient(135deg, transparent 0 17px, rgba(255, 255, 255, 0.11) 18px, transparent 19px 36px),
+    radial-gradient(circle at 20% 20%, rgba(198, 84, 195, 0.3), transparent 32%);
+  background-size: 52px 52px, 100% 100%;
+}
+
+.section-pattern-projects {
+  background-image:
+    radial-gradient(circle, rgba(255, 192, 222, 0.48) 1px, transparent 1.5px),
+    linear-gradient(45deg, transparent 48.8%, rgba(255, 255, 255, 0.07) 49.5% 50.5%, transparent 51.2%);
+  background-size: 30px 30px, 96px 96px;
+}
+
+.section-pattern-contact {
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 23px, rgba(255, 255, 255, 0.12) 24px, transparent 25px 48px),
+    repeating-linear-gradient(-45deg, transparent 0 23px, rgba(255, 255, 255, 0.07) 24px, transparent 25px 48px);
+  background-size: 68px 68px;
+  opacity: 0.3;
+}
+
+.section-pattern-pricing {
+  background-image:
+    linear-gradient(45deg, rgba(73, 36, 83, 0.12) 25%, transparent 25%, transparent 75%, rgba(73, 36, 83, 0.12) 75%),
+    linear-gradient(-45deg, rgba(73, 36, 83, 0.12) 25%, transparent 25%, transparent 75%, rgba(73, 36, 83, 0.12) 75%);
+  background-size: 34px 34px;
+  opacity: 0.22;
+}
+
+.section-pattern-faq {
+  background-image:
+    radial-gradient(circle, rgba(255, 192, 222, 0.42) 0.8px, transparent 1.4px),
+    radial-gradient(ellipse at 80% 25%, rgba(255, 192, 222, 0.2), transparent 44%);
+  background-size: 32px 32px, 100% 100%;
+}
+
+.section-pattern-footer {
+  background-image:
+    radial-gradient(circle, rgba(255, 192, 222, 0.48) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 1.5px);
+  background-position: 0 0, 14px 14px;
+  background-size: 28px 28px;
+  opacity: 0.22;
+}
+
+.section-pattern-overlay-light {
+  opacity: 0.22;
+}
+
 /* ============================================================
    Liquid Glass — Apple-style refractive glass surface
    Translucent tinted base + refraction blur + specular rim light

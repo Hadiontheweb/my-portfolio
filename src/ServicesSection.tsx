@@ -124,16 +124,7 @@ export default function ServicesSection() {
         aria-hidden="true"
         className="pointer-events-none absolute -right-48 top-[42rem] h-[34rem] w-[34rem] rounded-full bg-[var(--brand-secondary)]/25 blur-[140px]"
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px)',
-          backgroundSize: '72px 72px',
-          maskImage: 'linear-gradient(to bottom, black, transparent 80%)',
-        }}
-      />
+      <div aria-hidden="true" className="section-pattern-overlay section-pattern-services" />
 
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-col px-6 py-24 sm:px-12 sm:py-32 md:px-16 lg:px-20" style={{ rowGap: '3.5rem' }}>
         <div className="max-w-3xl">

@@ -47,6 +47,7 @@ export default function ProcessSection() {
         aria-hidden="true"
         className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full bg-[var(--brand-primary)]/18 blur-[90px]"
       />
+      <div aria-hidden="true" className="section-pattern-overlay section-pattern-process" />
       <div className="relative z-10 mb-10 flex justify-center sm:mb-14">
         <div
           aria-hidden="true"

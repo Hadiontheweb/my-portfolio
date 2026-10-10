@@ -35,12 +35,13 @@ export default function FAQSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="relative z-[60] isolate overflow-hidden bg-[#100817] px-6 py-20 text-white sm:px-12 sm:py-24 md:px-16 lg:px-20"
+      className="relative z-[60] isolate overflow-hidden bg-[#1b1022] px-6 py-20 text-white sm:px-12 sm:py-24 md:px-16 lg:px-20"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(142,30,162,0.2),transparent_38%),linear-gradient(180deg,#100817_0%,#14091a_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(198,84,195,0.28),transparent_42%),linear-gradient(180deg,#21132a_0%,#1a0d22_100%)]"
       />
+      <div aria-hidden="true" className="section-pattern-overlay section-pattern-faq" />
       <div className="relative mx-auto grid w-full max-w-[1200px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div>
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-highlight)]">

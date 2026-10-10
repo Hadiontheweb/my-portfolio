@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Check, Menu, X } from 'lucide-react';
+import { ArrowRight, Check, ExternalLink, Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ServicesSection from './ServicesSection';
@@ -15,6 +15,7 @@ const projects = [
     title: 'Cold Front',
     description: 'An expressive outerwear campaign built around bold, seasonal imagery.',
     category: 'Fashion campaign',
+    href: '#projects',
     image: 'https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=800&q=75',
     alt: 'Model wearing a dark winter jacket outdoors',
   },
@@ -22,6 +23,7 @@ const projects = [
     title: 'Off Hours',
     description: 'A streetwear concept with a confident visual identity and editorial direction.',
     category: 'Brand identity',
+    href: '#projects',
     image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=75',
     alt: 'Contemporary streetwear editorial photography',
   },
@@ -29,6 +31,7 @@ const projects = [
     title: 'Afterglow',
     description: 'A fashion story pairing striking portraiture with a modern digital presence.',
     category: 'Digital editorial',
+    href: '#projects',
     image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=75',
     alt: 'High-fashion editorial portrait',
   },
@@ -36,6 +39,7 @@ const projects = [
     title: 'Sundown',
     description: 'Warm, atmospheric campaign art direction for a hospitality brand.',
     category: 'Hospitality',
+    href: '#projects',
     image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=75',
     alt: 'Cocktail styled for a hospitality campaign',
   },
@@ -43,6 +47,7 @@ const projects = [
     title: 'Soft Form',
     description: 'A clean apparel collection presentation with a calm, tactile feel.',
     category: 'Product styling',
+    href: '#projects',
     image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=75',
     alt: 'Curated apparel collection flat lay',
   },
@@ -50,10 +55,62 @@ const projects = [
     title: 'Good Energy',
     description: 'A refreshing packaging direction designed to stand out on the shelf.',
     category: 'Packaging concept',
+    href: '#projects',
     image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=75',
     alt: 'Colorful beverage prepared for product photography',
   },
 ];
+
+const caseStudyDetails: Record<string, { overview: string; direction: string; gallery: { image: string; alt: string }[] }> = {
+  'Cold Front': {
+    overview: 'A seasonal campaign concept balancing the practical nature of outerwear with expressive fashion imagery.',
+    direction: 'Cinematic framing, deep tones, and an outdoor setting give the collection a confident, cold-weather character.',
+    gallery: [
+      { image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=75', alt: 'Fashion editorial portrait in an urban setting' },
+      { image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=75', alt: 'Fashion campaign styling and wardrobe' },
+    ],
+  },
+  'Off Hours': {
+    overview: 'A streetwear identity concept shaped for apparel, campaign imagery, and a modern digital presence.',
+    direction: 'Candid compositions and confident styling keep the visual language relaxed, youthful, and rooted in everyday culture.',
+    gallery: [
+      { image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=75', alt: 'Streetwear look in an urban setting' },
+      { image: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1200&q=75', alt: 'Modern apparel collection' },
+    ],
+  },
+  Afterglow: {
+    overview: 'A fashion editorial concept where portraiture and a clean digital layout work together to present a collection.',
+    direction: 'A restrained palette and image-led pacing let expressive portraits carry the story from first impression to detail.',
+    gallery: [
+      { image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=75', alt: 'Fashion portrait in soft natural light' },
+      { image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=75', alt: 'High-fashion editorial portrait' },
+    ],
+  },
+  Sundown: {
+    overview: 'A hospitality campaign concept designed to introduce a venue and make its atmosphere feel inviting.',
+    direction: 'Rich color, warm lighting, and close-up details create an intimate sense of place and occasion.',
+    gallery: [
+      { image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=75', alt: 'Warmly lit restaurant interior' },
+      { image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=75', alt: 'Welcoming dining space' },
+    ],
+  },
+  'Soft Form': {
+    overview: 'A calm product presentation for an apparel collection, with tactile styling that gives each piece room to breathe.',
+    direction: 'Soft neutrals, balanced compositions, and considered details create a cohesive visual rhythm across the range.',
+    gallery: [
+      { image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=75', alt: 'Apparel styled for a collection' },
+      { image: 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=75', alt: 'Minimal fashion styling and wardrobe' },
+    ],
+  },
+  'Good Energy': {
+    overview: 'A bright packaging concept that gives a refreshing drink a playful, shelf-ready personality.',
+    direction: 'Vivid color, clean layouts, and simple product-focused compositions make the concept feel fresh and approachable.',
+    gallery: [
+      { image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=75', alt: 'Colorful refreshing drink served over ice' },
+      { image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=1200&q=75', alt: 'Vibrant beverage product styling' },
+    ],
+  },
+};
 
 const pricingPlans = [
   {
@@ -77,10 +134,49 @@ const pricingPlans = [
   },
 ];
 
+const socialProfiles = [
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/mohi-uddin-al-hadi-088a35365/',
+    logo: (
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 9h3.56v11.45H3.56V9ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
+    ),
+  },
+  {
+    name: 'X',
+    href: 'https://x.com/Hadiontheweb',
+    logo: (
+      <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.49h2.04L6.49 3.24H4.3l13.31 17.4Z" />
+    ),
+  },
+  {
+    name: 'Facebook',
+    href: null,
+    logo: (
+      <path d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9h-3v3.1h3v8h3.7Z" />
+    ),
+  },
+  {
+    name: 'Instagram',
+    href: null,
+    logo: (
+      <>
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17.5" cy="6.5" r="1.25" />
+      </>
+    ),
+  },
+];
+
 export default function App() {
   const [activeNav, setActiveNav] = useState('Home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const appRef = useRef<HTMLDivElement>(null);
+  const projectTriggerRef = useRef<HTMLButtonElement>(null);
+  const caseStudyCloseRef = useRef<HTMLButtonElement>(null);
+  const caseStudyDialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const root = appRef.current;
@@ -131,6 +227,43 @@ export default function App() {
 
     return () => context.revert();
   }, []);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    caseStudyCloseRef.current?.focus();
+
+    const handleDialogKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedProject(null);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !caseStudyDialogRef.current) return;
+      const focusableElements = caseStudyDialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement?.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleDialogKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleDialogKeyDown);
+      projectTriggerRef.current?.focus();
+    };
+  }, [selectedProject]);
 
   return (
     <div ref={appRef} className="relative min-h-screen w-full bg-[#100817] text-white font-['DM_Sans',sans-serif] selection:bg-[var(--brand-primary)] selection:text-white flex flex-col justify-between">
@@ -326,10 +459,7 @@ export default function App() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-48 top-[28rem] h-[34rem] w-[34rem] rounded-full bg-[var(--brand-secondary)]/20 blur-[140px]"
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_80%)]"
-        />
+        <div aria-hidden="true" className="section-pattern-overlay section-pattern-about" />
         <div className="relative mx-auto w-full max-w-[1600px] px-6 py-24 sm:px-12 sm:py-32 md:px-16 lg:px-20">
           <div className="mb-10 grid items-center gap-9 sm:mb-14 md:grid-cols-12 lg:gap-12">
             <div className="order-1 max-w-3xl md:order-2 md:col-span-7 md:col-start-6">
@@ -406,48 +536,32 @@ export default function App() {
 
                 <div>
                   <div aria-label="Social profiles" className="mb-6 flex flex-wrap gap-2.5">
-                    {[
-                      {
-                        name: 'LinkedIn',
-                        logo: (
-                          <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 9h3.56v11.45H3.56V9ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
-                        ),
-                      },
-                      {
-                        name: 'Twitter',
-                        logo: (
-                          <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.49h2.04L6.49 3.24H4.3l13.31 17.4Z" />
-                        ),
-                      },
-                      {
-                        name: 'Facebook',
-                        logo: (
-                          <path d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9h-3v3.1h3v8h3.7Z" />
-                        ),
-                      },
-                      {
-                        name: 'Instagram',
-                        logo: (
-                          <>
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" strokeWidth="2" />
-                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2" />
-                            <circle cx="17.5" cy="6.5" r="1.25" />
-                          </>
-                        ),
-                      },
-                    ].map(({ name, logo }) => (
-                      <span
-                        key={name}
-                        role="img"
-                        aria-label={name}
-                        title={name}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white/90 transition-all hover:border-[var(--brand-highlight)]/70 hover:bg-[var(--brand-primary)]/30 hover:text-white"
-                      >
+                    {socialProfiles.map(({ name, href, logo }) => {
+                      const icon = (
                         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                           {logo}
                         </svg>
-                      </span>
-                    ))}
+                      );
+                      const className = 'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white/90 transition-all hover:border-[var(--brand-highlight)]/70 hover:bg-[var(--brand-primary)]/30 hover:text-white';
+
+                      return href ? (
+                        <a
+                          key={name}
+                          href={href}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={name}
+                          title={name}
+                          className={className}
+                        >
+                          {icon}
+                        </a>
+                      ) : (
+                        <span key={name} role="img" aria-label={name} title={name} className={className}>
+                          {icon}
+                        </span>
+                      );
+                    })}
                   </div>
 
                   <div className="flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-5 sm:flex-row sm:items-center">
@@ -498,16 +612,7 @@ export default function App() {
             aria-hidden="true"
             className="pointer-events-none absolute -left-48 top-24 h-[34rem] w-[34rem] rounded-full bg-[var(--brand-primary)]/20 blur-[130px]"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px)',
-              backgroundSize: '72px 72px',
-              maskImage: 'linear-gradient(to bottom, black, transparent 85%)',
-            }}
-          />
+          <div aria-hidden="true" className="section-pattern-overlay section-pattern-projects" />
 
           <div className="relative mx-auto w-full max-w-[1600px]">
             <div className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 md:flex-row md:items-end">
@@ -530,28 +635,44 @@ export default function App() {
               {projects.map((project, index) => (
                 <article key={project.title} data-scroll-reveal className="group">
                   <GlassEffect className="h-full overflow-hidden transition duration-300 group-hover:-translate-y-1">
-                    <div className="relative aspect-[4/3] overflow-hidden bg-[#1a1020]">
-                      <img
-                        src={project.image}
-                        alt={project.alt}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#100713]/75 via-transparent to-black/10" />
-                      <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md sm:left-5 sm:top-5">
-                        {project.category}
-                      </span>
-                      <span className="absolute right-4 top-4 font-mono text-xs text-white/80 sm:right-5 sm:top-5">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </div>
-                    <div className="p-5 sm:p-6">
-                      <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">{project.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-white/65 sm:text-base">
-                        {project.description}
-                      </p>
-                    </div>
+                    <button
+                      ref={index === 0 ? projectTriggerRef : undefined}
+                      type="button"
+                      aria-haspopup="dialog"
+                      aria-label={`Open ${project.title} case study`}
+                      onClick={(event) => {
+                        projectTriggerRef.current = event.currentTarget;
+                        setSelectedProject(project);
+                      }}
+                      className="block h-full w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--brand-highlight)]"
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden bg-[#1a1020]">
+                        <img
+                          src={project.image}
+                          alt={project.alt}
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#100713]/75 via-transparent to-black/10" />
+                        <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md sm:left-5 sm:top-5">
+                          {project.category}
+                        </span>
+                        <span className="absolute right-4 top-4 font-mono text-xs text-white/80 sm:right-5 sm:top-5">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <div className="flex flex-col items-start p-5 sm:p-6">
+                        <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">{project.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-white/65 sm:text-base">
+                          {project.description}
+                        </p>
+                        <span className="group/link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-soft)] transition-colors group-hover:text-white">
+                          <span>View case study</span>
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                        </span>
+                      </div>
+                    </button>
                   </GlassEffect>
                 </article>
               ))}
@@ -579,6 +700,7 @@ export default function App() {
             aria-hidden="true"
             className="absolute inset-0 bg-black/40"
           />
+          <div aria-hidden="true" className="section-pattern-overlay section-pattern-contact" />
           <div className="relative z-10 mx-auto max-w-3xl">
             <span data-scroll-reveal className="mb-5 block text-base font-bold text-[var(--brand-soft)] sm:text-xl">
               Start your brand
@@ -603,8 +725,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="pricing" className="relative z-20 -mt-10 bg-white px-6 py-20 text-zinc-950 sm:-mt-12 sm:px-12 sm:py-24 md:px-16 lg:px-20">
-          <div className="mx-auto max-w-[1200px]">
+        <section id="pricing" className="relative z-20 isolate -mt-10 overflow-hidden bg-white px-6 py-20 text-zinc-950 sm:-mt-12 sm:px-12 sm:py-24 md:px-16 lg:px-20">
+          <div aria-hidden="true" className="section-pattern-overlay section-pattern-pricing section-pattern-overlay-light" />
+          <div className="relative z-10 mx-auto max-w-[1200px]">
             <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
               <span data-scroll-reveal className="mb-4 block text-sm font-semibold text-[var(--brand-primary)]">
                 Pricing
@@ -673,21 +796,141 @@ export default function App() {
 
       <FAQSection />
 
-      <footer className="relative z-50 border-t border-white/10 bg-[#100817] px-6 py-10 text-white sm:px-12 sm:py-12 md:px-16 lg:px-20">
-        <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/75 p-3 backdrop-blur-md sm:p-6"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setSelectedProject(null);
+          }}
+        >
+          <div
+            ref={caseStudyDialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="case-study-title"
+            aria-describedby="case-study-intro"
+            tabIndex={-1}
+            className="relative my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-5xl overflow-y-auto rounded-[1.5rem] border border-white/20 bg-[#130b19] text-white shadow-[0_30px_100px_rgba(0,0,0,0.65)] sm:max-h-[calc(100dvh-3rem)] sm:rounded-[2rem]"
+          >
+            <div className="section-pattern-overlay section-pattern-projects" />
+            <div className="relative z-10">
+              <div className="sticky top-0 z-20 flex justify-end p-3 sm:p-5">
+                <button
+                  ref={caseStudyCloseRef}
+                  type="button"
+                  aria-label="Close case study"
+                  onClick={() => setSelectedProject(null)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-[#130b19]/85 text-white backdrop-blur-xl transition-colors hover:border-white/50 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-highlight)]"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="px-5 pb-7 sm:px-8 sm:pb-10 lg:px-12 lg:pb-12">
+                <div className="overflow-hidden rounded-2xl border border-white/10 sm:rounded-3xl">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.alt}
+                    className="aspect-[16/10] max-h-[60vh] w-full object-cover sm:aspect-[16/8]"
+                  />
+                </div>
+
+                <div className="mt-7 sm:mt-10">
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-highlight)]">
+                    {selectedProject.category}
+                  </span>
+                  <h2 id="case-study-title" className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                    {selectedProject.title}
+                  </h2>
+                  <p id="case-study-intro" className="mt-4 max-w-3xl text-base leading-relaxed text-white/70 sm:text-lg">
+                    {selectedProject.description}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {[selectedProject.category, 'Concept project', 'Art direction'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-medium text-white/75 sm:text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-9 grid gap-7 border-t border-white/10 pt-7 sm:mt-12 sm:grid-cols-2 sm:gap-10 sm:pt-9">
+                  <div>
+                    <h3 className="text-lg font-semibold sm:text-xl">Project overview</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
+                      {caseStudyDetails[selectedProject.title].overview}
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold sm:text-xl">Creative direction</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
+                      {caseStudyDetails[selectedProject.title].direction}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-9 sm:mt-12">
+                  <h3 className="text-lg font-semibold sm:text-xl">Selected imagery</h3>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-5">
+                    {caseStudyDetails[selectedProject.title].gallery.map(({ image, alt }) => (
+                      <img
+                        key={image}
+                        src={image}
+                        alt={alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-[4/3] w-full rounded-2xl border border-white/10 object-cover sm:rounded-3xl"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/85">Deliverables</h3>
+                    <p className="mt-2 text-sm text-white/60">{selectedProject.category} · Visual direction · Digital presentation</p>
+                  </div>
+                  <a
+                    href={selectedProject.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition-transform hover:scale-[1.03] active:scale-95"
+                  >
+                    <span>View live project</span>
+                    <ExternalLink className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <footer className="relative z-50 isolate overflow-hidden border-t border-white/10 bg-[#100817] px-6 pt-10 text-white sm:px-12 sm:pt-12 md:px-16 lg:px-20">
+        <div aria-hidden="true" className="section-pattern-overlay section-pattern-footer" />
+        <div className="relative z-10 mx-auto grid w-full max-w-[1600px] gap-8 xl:grid-cols-[1fr_auto_1fr] xl:items-start">
           <div>
             <a
               href="#home"
-              className="text-xl font-bold tracking-tight transition-opacity hover:opacity-80"
+              className="text-2xl font-bold tracking-tight transition-opacity hover:opacity-80 xl:text-3xl"
             >
               Hadi <span className="text-[var(--brand-soft)]">Morph</span>
             </a>
-            <p className="mt-2 text-sm text-white/55">
+            <p className="mt-3 text-base text-white/55 xl:text-lg">
               Thoughtful design and dependable development.
             </p>
+            <a
+              href="mailto:ahmezzhadi@gmail.com"
+              className="mt-5 inline-block max-w-full break-words text-2xl font-semibold text-white/90 transition-colors hover:text-[var(--brand-soft)] xl:text-3xl"
+            >
+              ahmezzhadi@gmail.com
+            </a>
           </div>
 
-          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
+          <nav aria-label="Footer navigation" className="flex flex-col items-start gap-y-4 text-base text-white/70 xl:pt-2 xl:text-lg">
             {[
               ['About', '#about'],
               ['Services', '#services'],
@@ -701,15 +944,43 @@ export default function App() {
             ))}
           </nav>
 
-          <a
-            href="mailto:ahmezzhadi@gmail.com"
-            className="text-sm text-white/70 transition-colors hover:text-[var(--brand-soft)]"
-          >
-            ahmezzhadi@gmail.com
-          </a>
+          <div aria-label="Social profiles" className="flex flex-col gap-3 xl:col-span-1 xl:items-end">
+            {socialProfiles.map(({ name, href, logo }) => {
+              const icon = (
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                  {logo}
+                </svg>
+              );
+              const className = 'inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] text-white/75 transition-all hover:border-[var(--brand-highlight)]/70 hover:bg-[var(--brand-primary)]/30 hover:text-white';
+
+              return href ? (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={name}
+                  title={name}
+                  className={className}
+                >
+                  {icon}
+                </a>
+              ) : (
+                <span key={name} role="img" aria-label={name} title={name} className={className}>
+                  {icon}
+                </span>
+              );
+            })}
+          </div>
         </div>
-        <div className="mx-auto mt-8 w-full max-w-[1600px] border-t border-white/10 pt-5 text-xs text-white/45">
+
+        <div className="relative z-10 mx-auto mt-8 w-full max-w-[1600px] border-t border-white/10 pt-5 text-sm text-white/45 xl:text-base">
           © {new Date().getFullYear()} Hadi Morph. All rights reserved.
+        </div>
+        <div aria-hidden="true" className="footer-wordmark relative z-10 mx-auto mt-8 h-[clamp(5rem,19vw,16rem)] w-full max-w-[1600px] overflow-hidden">
+          <span className="absolute inset-x-0 bottom-[-0.15em] whitespace-nowrap text-center text-[clamp(5rem,19vw,16rem)] font-bold leading-[0.8] tracking-[-0.075em]">
+            Hadi Morph
+          </span>
         </div>
       </footer>
 
